@@ -1,0 +1,148 @@
+.item{
+  /* background-color: yellow !important; */
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-direction: row !important;
+}
+
+.content-class{
+  display: flex !important;
+  flex-direction:row;
+  justify-content: space-between;
+  /* background-color:red; */
+  width: 100% !important;
+}
+
+.item:after{
+  display: none !important;
+}
+.center-div {
+  margin: auto;
+}
+
+.custom-class {
+  display: flex !important;
+  justify-content: space-between;
+}
+/* .search-class{ */
+  /* display: block !important; */
+  /* width: max-content; */
+/* } */
+.custom-btn {
+  display: flex !important;
+  margin: auto !important;
+}
+
+.heading-center{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.custom-content{
+  display: flex !important;
+  /* background-color:red !important; */
+  /* justify-content: space-between !important; */
+  align-items: center !important;
+  
+  
+}
+
+.content{
+  margin-left: 10px !important;
+}
+
+/* .image{
+  background-color: red !important;
+}
+
+.content{
+  background-color:blue !important;
+}
+*/
+/* .icon{
+  background-color: green !important; 
+  position: absolute;
+  right: 0 !important; 
+}  */
+
+.radioInput{
+  display: flex;
+  flex-direction: row;
+}
+.radioInput div{ 
+  margin-left:10%;
+}
+
+.radioInput div label{
+  margin-left:15px;
+}
+
+.radioInput div input{
+  margin-left:10px;
+  
+}
+
+.w-15{
+  width:15%;
+}
+
+.w-10{
+  width:10%;
+}
+
+.w-20{
+  width:20%;
+}
+.p-10{
+  padding-left:50%;
+}
+p{
+  color:red;
+}
+
+.font-weight-bold{
+  font-weight:bold;
+  font-weight:700;
+  font-size: 1.5rem;
+  margin: .5rem 0;
+}
+
+@media   (max-width:768px){
+.item{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+}
+
+.content-class{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  /* align-items: center; */
+  text-align: center;
+  
+}
+
+.editable-class{
+  display:flex !important;
+  align-self:stretch;
+  align-items: flex-start !important;
+  /* background-color:yellow; */
+  width: 10% !important;
+  justify-content:center;
+
+}
+
+.name-container{
+  display:flex !important;
+  align-items: center !important;
+  justify-content:center
+}
+
+.custom-content{
+  margin: .25rem 0 ;
+  width: 100% ;
+}
+
+}
