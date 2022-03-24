@@ -21,6 +21,8 @@ class ContactCard extends Component {
     }
 
     render() {
+      const {id,userName,email,gender,address,contactNumber,updateContactHandler,deleteContactHandler} = this.props;
+
           return (
             <>
               <div className="item container">
@@ -28,18 +30,18 @@ class ContactCard extends Component {
                   <div className="custom-content name-container w-20 ">
                     <img className="ui avatar image" src={user} alt="user" />
                     <div className="content">
-                      <div>{this.props.userName}</div>
+                      <div>{userName}</div>
                     </div>
                   </div>
-                  <div className="custom-content w-20 ">{this.props.email}</div>
+                  <div className="custom-content w-20 ">{email}</div>
                   <div className="custom-content w-15 ">
-                    {this.props.contactNumber}
+                    {contactNumber}
                   </div>
                   <div className="custom-content w-10 ">
-                    {this.props.gender}
+                   {gender}
                   </div>
                   <div className="custom-content w-25 ">
-                    {this.props.address}
+                    {address}
                   </div>
                 </div>
                 <div className="custom-content editable-class ">
@@ -50,7 +52,7 @@ class ContactCard extends Component {
                   <i
                     className="trash alternate outline icon"
                     onClick={() =>
-                      this.props.deleteContactHandler(this.props.id)
+                      deleteContactHandler(id)
                     }
                   ></i>
                 </div>
@@ -60,13 +62,13 @@ class ContactCard extends Component {
                 show={this.state.show}
                 onHide={() => this.setState({ show: false })}
                 isEditMode={true}
-                id={this.props.id}
-                userName={this.props.userName}
-                email={this.props.email}
-                gender={this.props.gender}
-                address={this.props.address}
-                contactNumber={this.props.contactNumber}
-                updateContactHandler={this.props.updateContactHandler}
+                id={id}
+                userName={userName}
+                email={email}
+                gender={gender}
+                address={address}
+                contactNumber={contactNumber}
+                updateContactHandler={updateContactHandler}
               />
             </>
           );

@@ -5,6 +5,8 @@ import ContactCard from "./ContactCard";
 export class ContactList extends Component {
   constructor(props) {
     super(props);
+   
+
     this.state = {
       show: false,
     };
@@ -22,6 +24,14 @@ export class ContactList extends Component {
   }
 
   render() {
+     const {
+       contactList,
+       deleteContactHandler,
+       addContactHandler,
+       updateContactHandler,
+       searchTerm,
+     } = this.props;
+
     return (
       <>
         <div className="container d-flex flex-column">
@@ -37,7 +47,7 @@ export class ContactList extends Component {
               type="search"
               placeholder="Search"
               aria-label="Search"
-              value={this.props.term}
+              value={searchTerm}
               onChange={this.searchThis}
             ></input>
           </div>
@@ -46,14 +56,13 @@ export class ContactList extends Component {
           show={this.state.show}
           onHide={() => this.setState({ show: false })}
           isEditMode={false}
-          addContactHandler={this.props.addContactHandler}
+          addContactHandler={addContactHandler}
         />
 
         <div className="ui celled list ">
           <div className="item container ">
             <div className="content-class">
               <div className="custom-content name-container w-20 ">
-                {/* <img className="ui avatar image" src={user} alt="user" /> */}
                 <div className="content">
                   <div className=" font-weight-bold p-10">Name</div>
                 </div>
@@ -73,8 +82,8 @@ export class ContactList extends Component {
             </div>
           </div>
 
-          {this.props.contactList.length > 0 ? (
-            this.props.contactList.map((contact) => {
+          {contactList.length > 0 ? (
+            contactList.map((contact) => {
               return (
                 <ContactCard
                   key={contact.id}
@@ -84,10 +93,9 @@ export class ContactList extends Component {
                   gender={contact.gender}
                   address={contact.address}
                   contactNumber={contact.contactNumber}
-                  updateContactHandler={this.props.updateContactHandler}
-                  deleteContactHandler={this.props.deleteContactHandler}
+                  updateContactHandler={updateContactHandler}
+                  deleteContactHandler={deleteContactHandler}
                   show={this.state.show}
-                  onHide={this.onHide}
                 />
               );
             })

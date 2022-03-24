@@ -17,6 +17,7 @@ class MyVerticallyCenteredModal extends Component {
   }
 
   componentWillReceiveProps = () => {
+    
     if (this.props.isEditMode) {
       this.setState({
         id: this.props.id,
@@ -221,9 +222,12 @@ class MyVerticallyCenteredModal extends Component {
     });
 
   render() {
+    const {show,isEditMode} = this.props;
+    
+    console.log(this.props);
     return (
       <Modal
-        show={this.props.show}
+        show={show}
         onHide={this.onHide}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -231,7 +235,7 @@ class MyVerticallyCenteredModal extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {this.props.isEditMode ? "Edit contact" : "Add contact"}
+            {isEditMode ? "Edit contact" : "Add contact"}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
