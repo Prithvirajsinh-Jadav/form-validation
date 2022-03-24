@@ -1,10 +1,6 @@
 import { Modal } from "react-bootstrap";
 import React, { Component } from "react";
 
-let currentUserLength = 0;
-let currentEmailLength = 0;
-let currentContactNumberLength = 0;
-let currentAddressLength = 0;
 
 class MyVerticallyCenteredModal extends Component {
   constructor(props) {
@@ -43,10 +39,7 @@ class MyVerticallyCenteredModal extends Component {
       address: "",
       formErrors: {},
     });
-    currentUserLength = 0;
-    currentEmailLength = 0;
-    currentContactNumberLength = 0;
-    currentAddressLength = 0;
+   
   };
 
   handleSubmit = (e) => {
@@ -62,15 +55,16 @@ class MyVerticallyCenteredModal extends Component {
         }),
       },
       () => {
-        console.log("i m exe handling 1");
 
-        const isNullish = Object.values(this.state.formErrors).every((value) => {
-          if (value === undefined) {
-            return true;
+        const isNullish = Object.values(this.state.formErrors).every(
+          (value) => {
+            if (value === undefined) {
+              return true;
+            }
+
+            return false;
           }
-
-          return false;
-        });
+        );
         if (isNullish) {
           if (this.props.isEditMode) {
             this.props.updateContactHandler({
@@ -96,8 +90,6 @@ class MyVerticallyCenteredModal extends Component {
       }
     );
   };
-
-
 
   validateUserName = (values) => {
     const errors = {};
@@ -153,7 +145,7 @@ class MyVerticallyCenteredModal extends Component {
 
   validate = (values) => {
     const errors = {};
-    
+
     errors.user_name = this.validateUserName(values).user_name;
     errors.email = this.validateEmail(values).email;
     errors.gender = this.validateGender(values).gender;
@@ -162,6 +154,71 @@ class MyVerticallyCenteredModal extends Component {
     console.log(errors);
     return errors;
   };
+
+  onChangeUserName = (e) => {
+    
+    this.setState({
+      userName: e.target.value,
+    });
+  };
+
+  onBlurUserName = (e) =>
+    this.setState({
+      formErrors: this.validateUserName({
+        user_name: e.target.value,
+      }),
+    });
+
+  onChangeEmail = (e) => {
+
+    this.setState({
+      email: e.target.value,
+    });
+  };
+
+  onBlurEmail = (e) =>
+    this.setState({
+      formErrors: this.validateEmail({
+        email: e.target.value,
+      }),
+    });
+
+  onChangeContactNumber = (e) => {
+   
+
+    this.setState({
+      contactNumber: e.target.value,
+    });
+  };
+
+  onBlurContactNumber = (e) =>
+    this.setState({
+      formErrors: this.validateContactNumber({
+        contact_number: e.target.value,
+      }),
+    });
+
+  onChangeGender = (e) =>
+    this.setState({
+      gender: e.target.value,
+      formErrors: this.validateGender({
+        gender: e.target.value,
+      }),
+    });
+
+  onChangeAddress = (e) => {
+   
+    this.setState({
+      address: e.target.value,
+    });
+  };
+
+  onBlurAddress = (e) =>
+    this.setState({
+      formErrors: this.validateAddress({
+        address: e.target.value,
+      }),
+    });
 
   render() {
     return (
@@ -179,7 +236,6 @@ class MyVerticallyCenteredModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <div className="ui main">
-            {/* <h2 className="heading-center">Add contacts to Manager</h2> */}
 
             <form className="ui form" onSubmit={this.handleSubmit}>
               <div className="field">
@@ -189,27 +245,8 @@ class MyVerticallyCenteredModal extends Component {
                   placeholder="Enter name"
                   name="user_name"
                   value={this.state.userName}
-                  onChange={(e) => {
-                    currentUserLength += 1;
-                    if (currentUserLength <= e.target.value.length) {
-                    
-                      this.setState({
-                        formErrors: this.validateUserName({
-                          user_name: e.target.value,
-                        }),
-                      });
-                    }
-                    this.setState({
-                      userName: e.target.value,
-                    });
-                  }}
-                  onBlur={(e) =>
-                    this.setState({
-                      formErrors: this.validateUserName({
-                        user_name: e.target.value,
-                      }),
-                    })
-                  }
+                  onChange={this.onChangeUserName}
+                  onBlur={this.onBlurUserName}
                 />
               </div>
 
@@ -222,28 +259,8 @@ class MyVerticallyCenteredModal extends Component {
                   placeholder="Enter email"
                   name="email"
                   value={this.state.email}
-                  onChange={(e) => {
-                    currentEmailLength += 1;
-
-                    if (currentEmailLength <= e.target.value.length) {
-                      this.setState({
-                        formErrors: this.validateEmail({
-                          email: e.target.value,
-                        }),
-                      });
-                    }
-
-                    this.setState({
-                      email: e.target.value,
-                    });
-                  }}
-                  onBlur={(e) =>
-                    this.setState({
-                      formErrors: this.validateEmail({
-                        email: e.target.value,
-                      }),
-                    })
-                  }
+                  onChange={this.onChangeEmail}
+                  onBlur={this.onBlurEmail}
                 />
               </div>
               <p>{this.state.formErrors.email} </p>
@@ -254,28 +271,8 @@ class MyVerticallyCenteredModal extends Component {
                   placeholder="Enter contact"
                   name="contact_number"
                   value={this.state.contactNumber}
-                  onChange={(e) => {
-                    currentContactNumberLength += 1;
-
-                    if (currentContactNumberLength <= e.target.value.length) {
-                      this.setState({
-                        formErrors: this.validateContactNumber({
-                          contact_number: e.target.value,
-                        }),
-                      });
-                    }
-
-                    this.setState({
-                      contactNumber: e.target.value,
-                    });
-                  }}
-                  onBlur={(e) =>
-                    this.setState({
-                      formErrors: this.validateContactNumber({
-                        contact_number: e.target.value,
-                      }),
-                    })
-                  }
+                  onChange={this.onChangeContactNumber}
+                  onBlur={this.onBlurContactNumber}
                 />
               </div>
               <p>{this.state.formErrors.contact_number} </p>
@@ -288,21 +285,7 @@ class MyVerticallyCenteredModal extends Component {
                     name="gender"
                     value="Male"
                     checked={this.state.gender === "Male"}
-                    onChange={(e) =>
-                      this.setState({
-                        gender: e.target.value,
-                        formErrors: this.validateGender({
-                          gender: e.target.value,
-                        }),
-                      })
-                    }
-                    onBlur={(e) =>
-                      this.setState({
-                        formErrors: this.validateGender({
-                          gender: e.target.value,
-                        }),
-                      })
-                    }
+                    onChange={this.onChangeGender}
                   />
 
                   <label htmlFor="gender">Female</label>
@@ -311,21 +294,7 @@ class MyVerticallyCenteredModal extends Component {
                     name="gender"
                     checked={this.state.gender === "Female"}
                     value="Female"
-                    onChange={(e) =>
-                      this.setState({
-                        gender: e.target.value,
-                        formErrors: this.validateGender({
-                          gender: e.target.value,
-                        }),
-                      })
-                    }
-                    onBlur={(e) =>
-                      this.setState({
-                        formErrors: this.validateGender({
-                          gender: e.target.value,
-                        }),
-                      })
-                    }
+                    onChange={this.onChangeGender}
                   />
                 </div>
               </div>
@@ -337,27 +306,8 @@ class MyVerticallyCenteredModal extends Component {
                   rows="5"
                   placeholder="Enter Address"
                   value={this.state.address}
-                  onChange={(e) => {
-                    currentAddressLength += 1;
-                    if (currentAddressLength <= e.target.value.length) {
-                      // console.log("i m exe");
-                      this.setState({
-                        formErrors: this.validateAddress({
-                          address: e.target.value,
-                        }),
-                      });
-                    }
-                    this.setState({
-                      address: e.target.value,
-                    });
-                  }}
-                  onBlur={(e) =>
-                    this.setState({
-                      formErrors: this.validateAddress({
-                        address: e.target.value,
-                      }),
-                    })
-                  }
+                  onChange={this.onChangeAddress}
+                  onBlur={this.onBlurAddress}
                 ></textarea>
               </div>
               <p>{this.state.formErrors.address} </p>
